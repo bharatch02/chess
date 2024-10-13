@@ -8,7 +8,13 @@ const favicon = require("serve-favicon");
 const app = express();
 
 const server = http.createServer(app);
-const io = socket(server);
+
+const io = socket(server, {
+    cors: {
+        origin: '*', // Allow all origins; replace with your front-end URL if needed
+        methods: ['GET', 'POST']
+    }
+});
 
 const chess = new Chess();
 let players = {};

@@ -1,4 +1,4 @@
-const socket = io();
+const socket = io('https://chess-seven-red.vercel.app');
 const chess = new Chess();
 const chessboard = document.querySelector(".chessboard");
 
@@ -99,6 +99,10 @@ const getPieceUnicode = (piece) => {
     return unicodePieces[piece.type] || "";
 };
 
+socket.on("connect", () => {
+    console.log('Connected to the server');
+});
+
 socket.on("playerRole", function(role) {
     playerRole = role;
     renderBoard();
@@ -117,6 +121,14 @@ socket.on("boardState", function (fen) {
 socket.on("move", function (move) {
     chess.move(move);
     renderBoard();
+});
+
+socket.on('connect_error', (error) => {
+    console.error('Connection error:', error);
+});
+
+socket.on('disconnect', (reason) => {
+    console.log('Disconnected:', reason);
 });
 
 renderBoard();

@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" href="/images/favicon.png" type="image/x-icon">
+    <link rel="icon" href="/images/favicon.png" type="image/png">
+    <script src="/socket.io/socket.io.js"></script>
     <style>
         .chessboard {
             display: grid;
@@ -62,7 +63,8 @@
         }
     </style>
 </head>
-<body>
+<body class="bg-zinc-900 relative">
+    <div class="loading" id="loading">Loading...</div>
     <div class="w-full h-screen flex items-center justify-center bg-zinc-900">
         <div class="chessboard w-96 h-96 bg-red-800"></div>
     </div>
